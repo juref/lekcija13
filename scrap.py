@@ -62,4 +62,5 @@ for tr in vsi_trji:
 csv_data = open("podatki.csv", "w+")
 for o in vse_osebe:
     csv_data.write(o["ime"] + "," + o["priimek"] + "," + o["email"] + "," + o["kraj"] + "\n")
-    print "Done!"
+
+print "Done!"
