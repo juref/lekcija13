@@ -11,6 +11,10 @@ if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
 from BeautifulSoup import BeautifulSoup
 from urllib2 import urlopen
 
+print """
+Počakaj, delam ...
+"""
+
 url = 'https://en.wikipedia.org/wiki/Game_of_Thrones'
 
 vsebina = urlopen(url).read()
@@ -22,6 +26,7 @@ vsebina_filter = soup.find('table', attrs={'class': 'wikitable plainrowheaders'}
 linki = vsebina_filter.findAll('a', attrs={'href': re.compile('\/wiki\/Game_of_Thrones_\(season_?[0-9]+\)')})
 
 ogledov = 0
+i = 1
 
 for l in linki:
     temp_url = 'https://en.wikipedia.org' + l["href"]
@@ -30,6 +35,7 @@ for l in linki:
     temp_table = temp_soup.findAll('table', attrs={'class': 'wikitable plainrowheaders wikiepisodetable'})
 
     for row in temp_table:
+        sezona = 0
         temp_row = row.findAll('tr')
         for col in temp_row:
             temp_col = col.findAll('td')
@@ -39,5 +45,9 @@ for l in linki:
                 if not val.isalpha():
                     # print val
                     ogledov = ogledov + float(val)
+                    sezona = sezona + float(val)
+        if sezona:
+            print str(i) + ". sezono" + " si je ogledalo " + str(sezona) + " milijonov gledalcev."
+            i += 1
 
-print 'Serijo "Game of Thrones" si je ogledalo ' + str(ogledov) + ' milijonov gledalcev'
+print '\nCelotno serijo "Game of Thrones" si je ogledalo ' + str(ogledov) + ' milijonov gledalcev.'

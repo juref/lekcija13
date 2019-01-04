@@ -10,7 +10,9 @@ if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
 from BeautifulSoup import BeautifulSoup
 from urllib2 import urlopen
 
-
+print """
+Počakaj, delam ...
+"""
 url = 'https://scrapebook22.appspot.com/'
 
 response = urlopen(url).read()
@@ -63,4 +65,4 @@ csv_data = open("podatki.csv", "w+")
 for o in vse_osebe:
     csv_data.write(o["ime"] + "," + o["priimek"] + "," + o["email"] + "," + o["kraj"] + "\n")
 
-print "Done!"
+print "Podatki so zapisani v csv datoteko."

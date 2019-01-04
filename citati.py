@@ -19,6 +19,8 @@ soup = BeautifulSoup(vsebina)
 vsi_citati = soup.findAll(attrs={"class": "quoteContent"})
 
 citati = vsi_citati[:5]
+i = 1
 
 for c in citati:
-    print c.string
+    print str(i) + '. citat ' + '"' + c.string + '"'
+    i += 1
