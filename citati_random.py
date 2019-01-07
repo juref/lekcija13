@@ -19,17 +19,6 @@ soup = BeautifulSoup(vsebina)
 
 vsi_citati = soup.findAll(attrs={"class": "quoteContent"})
 
-i = 1
-
-
-print "\nprvi način:\n"
-
-while i < 6:
-    print str(i) + '. citat: ' + random.choice(vsi_citati).string
-    i += 1
-
-print "\ndrugi način:\n"
-
 izbor = random.sample(range(1, len(vsi_citati)), 5)
 i = 1
 
